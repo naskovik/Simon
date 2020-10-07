@@ -15,6 +15,22 @@ const SimonsOrder = function() {
   function compareColors(arr1, arr2) {
     return arr1.slice(-difficulty).toString() === arr2.slice(-difficulty).toString();
   }
+  /**
+   * m('.ui.segment.green', [
+   * m('label', { style: { marginLeft: '20px', fontSize: '25px } }, [
+   *    [...Array(difficulty).keys()].map(() => currentColors.toString())
+   *  ])
+   * ])
+   */
+
+   /**
+    * [...Array(difficulty).keys()].map(() => m(`.ui.segment.green`, [
+          m('label', {
+            style: { marginLeft: '20px', fontSize: '25px'}
+          }, currentColors.toString()),
+        ],
+        ))
+    */
 
 
   return {
@@ -26,12 +42,11 @@ const SimonsOrder = function() {
     },
     view: () => {
       return [
-         [...Array(difficulty).keys()].map(() => m(`.ui.segment.green`, [
-          m('label', {
-            style: { marginLeft: '20px', fontSize: '25px'}
-          }, currentColors),
-        ],
-        ))
+        m('.ui.segment.green', [
+           m('label', { style: { marginLeft: '20px', fontSize: '25px' } }, [
+              `${ [...Array(difficulty).keys()].map((elem) => currentColors[elem])} `
+            ])
+          ])
       ]
     },
     onbeforeupdate: () => {
