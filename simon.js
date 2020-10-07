@@ -166,10 +166,8 @@ const Simon = function(){
             onclick: () => { 
               playing = !playing;
               // * *Si pulsa para terminar la partida, resetea la combinación del jugador a vacio.
-              if(playing === false) {
                 playersCombination.length = 0;
                 combinations.player = '';
-              } 
             } 
            },
           ),
