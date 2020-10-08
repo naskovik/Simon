@@ -15,23 +15,6 @@ const SimonsOrder = function() {
   function compareColors(arr1, arr2) {
     return arr1.slice(-difficulty).toString() === arr2.slice(-difficulty).toString();
   }
-  /**
-   * m('.ui.segment.green', [
-   * m('label', { style: { marginLeft: '20px', fontSize: '25px } }, [
-   *    [...Array(difficulty).keys()].map(() => currentColors.toString())
-   *  ])
-   * ])
-   */
-
-   /**
-    * [...Array(difficulty).keys()].map(() => m(`.ui.segment.green`, [
-          m('label', {
-            style: { marginLeft: '20px', fontSize: '25px'}
-          }, currentColors.toString()),
-        ],
-        ))
-    */
-
 
   return {
     oninit: (vnode) => {
@@ -64,12 +47,11 @@ const Simon = function(){
   let secretShowTimeout;
   let baseColor;
   let difficulty;
+  let showColors;
 
   function addColorToArray(color) {
     playersKeys.push(color);
   }
-  function showColors(show) { return show; }
-
   return {
     oninit: () => { 
       baseColor  = 'DarkGrey';
@@ -77,7 +59,7 @@ const Simon = function(){
       playing = false;
       playersKeys = [];
       difficulty = 1;
-      showColors(false);
+      showColors = false;
     },
     view: (vnode) => {
       return [
@@ -165,8 +147,8 @@ const Simon = function(){
            { cx: '50%', cy: '350',r: '70',stroke: 'black', 'stroke-width': "17", fill: 'orange',
             onclick: () => { 
               playing = !playing;
-              showColors(true);
-              setTimeout(showColors(false), 3000);
+              showColors = true;
+              setTimeout(() => showColors = false, 1000);
             } 
            },
           ),
